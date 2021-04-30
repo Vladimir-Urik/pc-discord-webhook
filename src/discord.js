@@ -34,8 +34,7 @@ function createEmbed(repo, branch, url, commits, size, report) {
                     "> Branch: **"+ branch +"**\n" +
                     "> Build: **"+ getStatus(report) +"**\n" +
                     "\n" +
-                    ":paperclips: **Commity:**\n" +
-                    + changes)
+                    ":paperclips: **Commity:**\n" + changes)
                 .setTimestamp(Date.parse(latest.timestamp));
 
     if (report.tests.length > 0) {
