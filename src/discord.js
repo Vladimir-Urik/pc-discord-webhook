@@ -22,6 +22,9 @@ function createEmbed(repo, branch, url, commits, size, report) {
     console.log("Constructing Embed...");
     var latest = commits[0];
 
+    const changes = getChangeLog(commits, size);
+    console.log(changes)
+
     var embed = new discord.MessageEmbed()
                 .setColor(16776960)
                 .setURL(url)
@@ -32,7 +35,7 @@ function createEmbed(repo, branch, url, commits, size, report) {
                     "> Build: **"+ getStatus(report) +"**\n" +
                     "\n" +
                     ":paperclips: **Commity:**\n" +
-                    + getChangeLog(commits, size))
+                    + changes)
                 .setTimestamp(Date.parse(latest.timestamp));
 
     if (report.tests.length > 0) {
