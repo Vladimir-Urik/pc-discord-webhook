@@ -22,7 +22,7 @@ function createEmbed(repo, branch, url, commits, size, report) {
     console.log("Constructing Embed...");
     var latest = commits[0];
 
-    var embed = new discord.RichEmbed()
+    var embed = new discord.MessageEmbed()
                 .setColor(16776960)
                 .setURL(url)
                 .setAuthor(repo, "https://cdn.pvpcraft.cz/u/ceNRlF.png", null)
