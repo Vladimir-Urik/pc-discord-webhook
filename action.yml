@@ -1,4 +1,4 @@
-name: 'fancier-discord-webhooks'
+name: 'pc-discord-webhook'
 description: 'This GitHub Action sends  fancy and more meaningful discord messages for your commits. It includes Test results and coverage.'
 
 inputs:
@@ -12,7 +12,7 @@ inputs:
 runs:
   using: 'node12'
   main: 'src/index.js'
-  
+
 branding:
   icon: check-circle
   color: blue

@@ -23,10 +23,16 @@ function createEmbed(repo, branch, url, commits, size, report) {
     var latest = commits[0];
 
     var embed = new discord.RichEmbed()
-                .setColor(getEmbedColor(report))
+                .setColor(16776960)
                 .setURL(url)
-                .setTitle(size + (size == 1 ? " Commit was " : " Commits were ") + "added to " + repo + " (" + branch + ")")
-                .setDescription(getChangeLog(commits, size))
+                .setAuthor(repo, "https://cdn.pvpcraft.cz/u/ceNRlF.png", null)
+                .setDescription("<:issueopened:507340024786845706> **Informace o pushu:**\n" +
+                    "> Počet commitov: **"+ size +"**\n" +
+                    "> Branch: **"+ branch +"**\n" +
+                    "> Build: **"+ getStatus(report) +"**\n" +
+                    "\n" +
+                    ":paperclips: **Commity:**\n" +
+                    + getChangeLog(commits, size))
                 .setTimestamp(Date.parse(latest.timestamp));
 
     if (report.tests.length > 0) {
@@ -37,26 +43,26 @@ function createEmbed(repo, branch, url, commits, size, report) {
 }
 
 function getChangeLog(commits, size) {
-    var changelog = "";
+    let changelog = "";
 
-    for (var i in commits) {
+    for (const i in commits) {
         if (i > 3) {
-            changelog += `+ ${size - i} more...\n`;
+            changelog += `> + **${size - i}** dalších...\n`;
             break;
         }
 
-        var commit = commits[i];
-        var sha = commit.id.substring(0, 6);
-        var message = commit.message.length > MAX_MESSAGE_LENGTH ? (commit.message.substring(0, MAX_MESSAGE_LENGTH) + "..."): commit.message;
-        changelog += `[\`${sha}\`](${commit.url}) ${message} (@${commit.author.username})\n`;
+        const commit = commits[i];
+        const sha = commit.id.substring(0, 6);
+        const message = commit.message.length > MAX_MESSAGE_LENGTH ? (commit.message.substring(0, MAX_MESSAGE_LENGTH) + "...") : commit.message;
+        changelog += `> **•** ${message} (@${commit.author.username}) [\`${sha}\`](${commit.url})\n`;
     }
 
     return changelog;
 }
 
-function getEmbedColor(report) {
+function getStatus(report) {
     if (report.status === "FAILURE") {
-        return 0xE80000;
+        return "Neúspešný";
     }
 
     if (report.tests.length > 0) {
@@ -70,16 +76,15 @@ function getEmbedColor(report) {
         }
 
         if (failures > 0) {
-            return 0xFF6600;
+            return "Neúspešný";
         }
         if (skipped > 0) {
-            return 0xFF9900;
+            return "Preskočený";
         }
 
-        return 0x00FF00;
-    }
-    else {
-        return 0x00BB22;
+        return "Úspešný";
+    } else {
+        return "Úspešný";
     }
 }
 
