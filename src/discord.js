@@ -32,7 +32,6 @@ function createEmbed(repo, branch, url, commits, size, report) {
                 .setDescription("<:issueopened:507340024786845706> **Informace o pushu:**\n" +
                     "> Počet commitov: **"+ size +"**\n" +
                     "> Branch: **"+ branch +"**\n" +
-                    "> Build: **"+ getStatus(report) +"**\n" +
                     "\n" +
                     ":paperclips: **Commity:**\n" + changes)
                 .setTimestamp(Date.parse(latest.timestamp));
