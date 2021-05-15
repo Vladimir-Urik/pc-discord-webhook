@@ -14,7 +14,8 @@ module.exports.send = (id, token, repo, branch, url, commits, size, report) => n
 
     client.send(createEmbed(repo, branch, url, commits, size, report)).then(() => {
         console.log("Successfully sent the message!");
-        //resolve();
+        resolve();
+        exit(1)
     }, reject);
 });
 
