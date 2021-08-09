@@ -29,7 +29,7 @@ function createEmbed(repo, branch, url, commits, size, report) {
     var embed = new discord.MessageEmbed()
                 .setColor(16776960)
                 .setURL(url)
-                .setAuthor(repo, "https://cdn.pvpcraft.cz/u/ceNRlF.png", null)
+                .setAuthor(repo, "https://i.imgur.com/fnzUdkS.png", null)
                 .setDescription("<:issueopened:507340024786845706> **Informace o pushu:**\n" +
                     "> Počet commitov: **"+ size +"**\n" +
                     "> Branch: **"+ branch +"**\n" +
